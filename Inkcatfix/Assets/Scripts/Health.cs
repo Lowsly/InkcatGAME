@@ -34,14 +34,19 @@ public class Health : MonoBehaviour
         }
     }
     public void Hit()
-        {
-            health = health - 1;
-            Debug.Log("Shoot");
-            if (health == 0){
-                Destroy(player);
-                 hearts[0].sprite = emptyHeart;
-                Debug.Log("Sht");
-            } 
-        }
+    {
+        health = health - 1;
+        Debug.Log("Shoot");
+        if (health == 0){
+            Destroy(player);
+            hearts[0].sprite = emptyHeart;
+            Debug.Log("Sht");
+        } 
+    }
+    public void Heal()
+    {
+        health = health + 1;
+        Debug.Log("Heal");
+    }
     
 }

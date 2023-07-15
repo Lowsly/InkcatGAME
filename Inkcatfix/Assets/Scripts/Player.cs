@@ -42,7 +42,11 @@ public class Player : MonoBehaviour
 	private bool _attackUp;
 	private bool _attackHorizontal;
 
+	//heal 
 
+	private float _cdHeal = 0f;
+	private float _HealDelay = 1.5f;
+	//facing
 	float dirX;
 
 	Vector3 localScale;
@@ -124,12 +128,12 @@ public class Player : MonoBehaviour
 	}
 	public void ShootDiagon(){
 		if(localScale.x >0){
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,45));
-		var splash = Instantiate (splashPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 45));
+		var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,40));
+		var splash = Instantiate (splashPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 40));
 		}
 		if(localScale.x <0){
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,135));
-		var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 135));
+		var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,140));
+		var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 140));
 		}
 	}
 	void FixedUpdate()
@@ -167,6 +171,12 @@ public class Player : MonoBehaviour
 				//Invoke("Shoot",0.05f);
 				_animator.SetTrigger("ShootDiagon");
 			}
+			
+		}
+		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && Time.time > _cdHeal){
+			_cdHeal = _HealDelay + Time.time;
+			Health health = GetComponent<Health>();
+			health.Heal();
 		}
 	}
 
