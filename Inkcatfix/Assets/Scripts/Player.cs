@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
 	void LateUpdate()
 	{
 		Flip();
-		_animator.SetBool("Isidle", _movement == Vector2.zero);
+		_animator.SetBool("Isidle", _movement == Vector2.zero && Input.GetButton("Fire1") == false);
 		_animator.SetBool("IsGrounded", _isGrounded);
 		_animator.SetFloat("VerticalVelocity", _rigidbody.velocity.y);
 		_animator.SetFloat("SpeedShoot", _cdShoot);
