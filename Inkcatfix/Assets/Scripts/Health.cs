@@ -8,13 +8,15 @@ public class Health : MonoBehaviour
     public int health;
     public int numHearts;
 
+    public GameObject player;
+
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
     void Update()
     {
         if(health > numHearts){
-            health = numHearts;
+            numHearts = health;
         }
         for (int i=0; i<hearts.Length;i++){
             if(i<health){
@@ -31,4 +33,15 @@ public class Health : MonoBehaviour
             }
         }
     }
+    public void Hit()
+        {
+            health = health - 1;
+            Debug.Log("Shoot");
+            if (health == 0){
+                Destroy(player);
+                 hearts[0].sprite = emptyHeart;
+                Debug.Log("Sht");
+            } 
+        }
+    
 }

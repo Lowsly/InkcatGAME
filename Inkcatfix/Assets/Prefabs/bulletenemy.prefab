@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 3919829734237896950}
   - component: {fileID: 6422238378666427421}
   - component: {fileID: -8620053660971287413}
-  m_Layer: 8
-  m_Name: bullet
+  m_Layer: 11
+  m_Name: bulletenemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,9 +107,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.06
-  speed: 4
+  speed: 0.5
   direction: {x: 1, y: 0}
-  livingTime: 5
+  livingTime: 7
   initialColor: {r: 0, g: 0, b: 0, a: 1}
   finalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &-2178697551215552911

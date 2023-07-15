@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-	public GameObject splashEndPrefab;
+public GameObject splashEndPrefab;
     private Rigidbody2D _rigidbody;
   	private bool _isTouching;
     public Transform groundCheck;
@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
 
 	private SpriteRenderer _renderer;
 	private float _startingTime;
-
 
 	void Awake()
 	{
@@ -51,10 +50,19 @@ public class Bullet : MonoBehaviour
 		float _percentageCompleted = _timeSinceStarted / livingTime;
 
 		_renderer.color = Color.Lerp(initialColor, finalColor, _percentageCompleted);*/
-		if(_isTouching == true){
-			DestroyBullet();
-		}
+		
     }
+	void OnTriggerEnter2D(Collider2D collision)
+    {
+            Health health = collision.GetComponent<Health>();
+           
+            if (health != null)
+            {
+                health.Hit();
+            }
+            DestroyBullet();
+    }
+	
 	void DestroyBullet(){
 		Instantiate (splashEndPrefab, transform.position, Quaternion.identity);
 		Destroy(gameObject);
