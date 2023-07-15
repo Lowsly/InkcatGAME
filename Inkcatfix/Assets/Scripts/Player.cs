@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
 			float verticalInput = Input.GetAxisRaw("Vertical");
 			float horizontalVelocity = _movement.normalized.x * speed;
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
-			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot) {
+			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false) {
 			_cdShoot = _shootDelay + Time.time;
 			if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0){
 				_attackRight =! _attackRight;
