@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
 	private bool _isAttacking;
 	private float _cdShoot = 0f;
-	private float _shootDelay = 0.55f;
+	private float _shootDelay = 0.5f;
 	private bool _attackRight = true;
 	private bool _attackUp;
 	private bool _attackHorizontal;
@@ -124,12 +124,12 @@ public class Player : MonoBehaviour
 	}
 	public void ShootDiagon(){
 		if(localScale.x >0){
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.1f,0.164f,0f) + _firePoint.position, Quaternion.Euler(0,0,25));
-		var splash = Instantiate (splashPrefab, new Vector3 (0.1f,0.164f,0f) + _firePoint.position, Quaternion.Euler(0,0, 25));
+		var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,45));
+		var splash = Instantiate (splashPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 45));
 		}
 		if(localScale.x <0){
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.1f,0.164f,0f) + _firePoint.position, Quaternion.Euler(0,0,155));
-		var splash = Instantiate (splashPrefab, new Vector3 (-0.1f,0.164f,0f) + _firePoint.position, Quaternion.Euler(0,0, 155));
+		var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,135));
+		var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 135));
 		}
 	}
 	void FixedUpdate()
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
 			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot) {
 			_cdShoot = _shootDelay + Time.time;
-			if (_isGrounded == true && horizontalInput == 0){
+			if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0){
 				_attackRight =! _attackRight;
 				//Invoke("ShootHor",0f);
 				if (_attackRight == true ){
@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
 	void LateUpdate()
 	{
 		Flip();
-		_animator.SetBool("Isidle", _movement == Vector2.zero && Input.GetButton("Fire1") == false);
+		_animator.SetBool("Isidle", _movement == Vector2.zero);
 		_animator.SetBool("IsGrounded", _isGrounded);
 		_animator.SetFloat("VerticalVelocity", _rigidbody.velocity.y);
 		_animator.SetFloat("SpeedShoot", _cdShoot);
