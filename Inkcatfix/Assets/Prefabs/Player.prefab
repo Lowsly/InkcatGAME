@@ -76,10 +76,10 @@ GameObject:
   - component: {fileID: 8801876571137600726}
   - component: {fileID: 8801876571137600721}
   - component: {fileID: 8801876571137600720}
-  - component: {fileID: -6795181292291028749}
+  - component: {fileID: 1970739397}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Firepoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,7 +233,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &-6795181292291028749
+--- !u!114 &1970739397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,6 +248,9 @@ MonoBehaviour:
   health: 3
   numHearts: 3
   player: {fileID: 8801876571137600723}
-  hearts: []
-  fullHeart: {fileID: 0}
-  emptyHeart: {fileID: 0}
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: -1686768119, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+  emptyHeart: {fileID: 186440721, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
