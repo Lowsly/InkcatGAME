@@ -1,0 +1,4 @@
+repository "Inkcat@Gatotinta@cloud"
+  path "/"
+    br "/main"
+    co "/main"
