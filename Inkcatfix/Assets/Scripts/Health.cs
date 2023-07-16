@@ -27,6 +27,10 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    private bool _noJar = false;
+
+    private int _maxInk = 5;
+
     private int _inkUses = 5;
     void Update()
     {
@@ -47,55 +51,89 @@ public class Health : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
-        if(_inkUses == 0){
-            Ink[2].sprite = emptyInk;
-            Ink[1].sprite = emptyInk;
-            Ink[0].sprite = brokenInkJar;
+        if (_noJar == false){
+            if(_inkUses <= 0){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = emptyInk;
+                Ink[0].sprite = brokenInkJar;
+                _noJar = true;
+            }
+            if(_inkUses == 1){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = emptyInk;
+                Ink[0].sprite = emptyInkJar;
+            }
+            if(_inkUses == 2){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = emptyInk;
+                Ink[0].sprite = dosInkJar;
+            }
+            if(_inkUses == 3){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = emptyInk;
+                Ink[0].sprite = fullInkJar;
+            }
+            if(_inkUses == 4){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = fullInk;
+                Ink[0].sprite = fullInkJar;
+            }
+            if(_inkUses == 5){
+                Ink[2].sprite = fullInk;
+                Ink[1].sprite = fullInk;
+                Ink[0].sprite = fullInkJar;
+            }
         }
-        if(_inkUses == 1){
-            Ink[2].sprite = emptyInk;
-            Ink[1].sprite = emptyInk;
-            Ink[0].sprite = emptyInkJar;
-        }
-        if(_inkUses == 2){
-            Ink[2].sprite = emptyInk;
-            Ink[1].sprite = emptyInk;
-            Ink[0].sprite = dosInkJar;
-        }
-        if(_inkUses == 3){
-            Ink[2].sprite = emptyInk;
-            Ink[1].sprite = emptyInk;
-            Ink[0].sprite = fullInkJar;
-        }
-        if(_inkUses == 4){
-            Ink[2].sprite = emptyInk;
-            Ink[1].sprite = fullInk;
-            Ink[0].sprite = fullInkJar;
-        }
-        if(_inkUses == 5){
-            Ink[2].sprite = fullInk;
-            Ink[1].sprite = fullInk;
-            Ink[0].sprite = fullInkJar;
+        if (_noJar == true) {
+            _maxInk = 2;
+            if (_inkUses > 2){
+                _inkUses = 2;
+            }
+            if(_inkUses == 2){
+                Ink[2].sprite = fullInk;
+                Ink[1].sprite = fullInk;
+                Ink[0].sprite = brokenInkJar;
+            }
+             if(_inkUses == 1){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = fullInk;
+                Ink[0].sprite = brokenInkJar;
+            }
+            if(_inkUses == 1){
+                Ink[2].sprite = emptyInk;
+                Ink[1].sprite = emptyInk;
+                Ink[0].sprite = brokenInkJar;
+            }
         }
     }
     public void Hit()
     {
         health = health - 1;
         Debug.Log("Shoot");
-        if (health == 0){
+        if (health <= -1){
             Destroy(player);
-            hearts[0].sprite = emptyHeart;
+            //hearts[0].sprite = emptyHeart;
             Debug.Log("Sht");
         } 
     }
     public void Heal()
     {
         if (_inkUses > 0){
-        health = health + 1;
-        Debug.Log("Heal");
-        _inkUses = _inkUses -1;
+            health = health + 1;
+            Debug.Log("Heal");
+            _inkUses = _inkUses -1;
         }
-        
+    }
+    public void InkUsed(){
+        if (_inkUses < _maxInk){
+            _inkUses = _inkUses - 1;
+        }
+        if (_inkUses > _maxInk) {
+            _inkUses = _maxInk;
+        }
+        if(_inkUses < 0){
+            _inkUses = 0;
+        }
     }
     
 }

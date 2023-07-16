@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
 	// References
 	private Rigidbody2D _rigidbody;
+
+	private Health health;
 	private Animator _animator;
 
 	// Long Idle
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
 		_firePoint = transform.Find("FirePoint");
-		
+		Health health = GetComponent<Health>();
 		
 	}
 
@@ -174,9 +176,14 @@ public class Player : MonoBehaviour
 			
 		}
 		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && Time.time > _cdHeal){
-			_cdHeal = _HealDelay + Time.time;
 			Health health = GetComponent<Health>();
+			_cdHeal = _HealDelay + Time.time;
 			health.Heal();
+			_animator.SetTrigger("Heal");
+		}
+		if (Input.GetButton("Fire3") == true){
+			Health health = GetComponent<Health>();
+			health.InkUsed();
 		}
 	}
 
