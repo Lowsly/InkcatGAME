@@ -107,7 +107,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.06
-  speed: 0.5
+  speed: 3
   direction: {x: 1, y: 0}
   livingTime: 7
   initialColor: {r: 0, g: 0, b: 0, a: 1}
