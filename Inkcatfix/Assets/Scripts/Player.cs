@@ -121,11 +121,11 @@ public class Player : MonoBehaviour
 	public void ShootWalk(){
 		if(localScale.x >0){
 		var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
-		var splash = Instantiate (splashPrefab,new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
+		var splash = Instantiate (splashPrefab,new Vector3 (0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
 		}
 		if(localScale.x < 0){
 		var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 180));
-		var splash = Instantiate (splashPrefab,new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
+		var splash = Instantiate (splashPrefab,new Vector3 (-0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
 		}
 	}
 	public void ShootDiagon(){
