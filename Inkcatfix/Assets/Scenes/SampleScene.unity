@@ -1081,6 +1081,50 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: fullInk
+      value: 
+      objectReference: {fileID: -958574048, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: emptyInk
+      value: 
+      objectReference: {fileID: -512069880, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: enmtyInk
+      value: 
+      objectReference: {fileID: -512069880, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: dosInkJar
+      value: 
+      objectReference: {fileID: 397591593, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: fullInkJar
+      value: 
+      objectReference: {fileID: -1858271977, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: emptyInkJar
+      value: 
+      objectReference: {fileID: 1752553678, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: brokenInkJar
+      value: 
+      objectReference: {fileID: 915606961, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: Ink.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: Ink.Array.data[0]
+      value: 
+      objectReference: {fileID: 1240800358}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: Ink.Array.data[1]
+      value: 
+      objectReference: {fileID: 959702987}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: Ink.Array.data[2]
+      value: 
+      objectReference: {fileID: 91902134}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 1280062715}

@@ -11,8 +11,23 @@ public class Health : MonoBehaviour
     public GameObject player;
 
     public Image[] hearts;
+
+    public Image[] Ink;
+
+    public Sprite fullInk;
+    public Sprite emptyInk;
+
+    public Sprite fullInkJar;
+
+     public Sprite dosInkJar;
+
+    public Sprite emptyInkJar;
+
+    public Sprite brokenInkJar;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+
+    private int _inkUses = 5;
     void Update()
     {
         if(health > numHearts){
@@ -32,6 +47,36 @@ public class Health : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+        if(_inkUses == 0){
+            Ink[2].sprite = emptyInk;
+            Ink[1].sprite = emptyInk;
+            Ink[0].sprite = brokenInkJar;
+        }
+        if(_inkUses == 1){
+            Ink[2].sprite = emptyInk;
+            Ink[1].sprite = emptyInk;
+            Ink[0].sprite = emptyInkJar;
+        }
+        if(_inkUses == 2){
+            Ink[2].sprite = emptyInk;
+            Ink[1].sprite = emptyInk;
+            Ink[0].sprite = dosInkJar;
+        }
+        if(_inkUses == 3){
+            Ink[2].sprite = emptyInk;
+            Ink[1].sprite = emptyInk;
+            Ink[0].sprite = fullInkJar;
+        }
+        if(_inkUses == 4){
+            Ink[2].sprite = emptyInk;
+            Ink[1].sprite = fullInk;
+            Ink[0].sprite = fullInkJar;
+        }
+        if(_inkUses == 5){
+            Ink[2].sprite = fullInk;
+            Ink[1].sprite = fullInk;
+            Ink[0].sprite = fullInkJar;
+        }
     }
     public void Hit()
     {
@@ -45,8 +90,12 @@ public class Health : MonoBehaviour
     }
     public void Heal()
     {
+        if (_inkUses > 0){
         health = health + 1;
         Debug.Log("Heal");
+        _inkUses = _inkUses -1;
+        }
+        
     }
     
 }
