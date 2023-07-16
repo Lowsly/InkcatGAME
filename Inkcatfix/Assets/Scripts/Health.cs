@@ -34,6 +34,9 @@ public class Health : MonoBehaviour
     private int _inkUses = 5;
     void Update()
     {
+        if(_inkUses < 0){
+            _inkUses = 0;
+        }
         if(health > numHearts){
             numHearts = health;
         }
@@ -52,7 +55,7 @@ public class Health : MonoBehaviour
             }
         }
         if (_noJar == false){
-            if(_inkUses <= 0){
+            if(_inkUses < 1){
                 Ink[2].sprite = emptyInk;
                 Ink[1].sprite = emptyInk;
                 Ink[0].sprite = brokenInkJar;
@@ -99,7 +102,7 @@ public class Health : MonoBehaviour
                 Ink[1].sprite = fullInk;
                 Ink[0].sprite = brokenInkJar;
             }
-            if(_inkUses == 1){
+            if(_inkUses == 0){
                 Ink[2].sprite = emptyInk;
                 Ink[1].sprite = emptyInk;
                 Ink[0].sprite = brokenInkJar;
@@ -126,13 +129,10 @@ public class Health : MonoBehaviour
     }
     public void InkUsed(){
         if (_inkUses < _maxInk){
-            _inkUses = _inkUses - 1;
+            _inkUses = _inkUses + 1;
         }
         if (_inkUses > _maxInk) {
             _inkUses = _maxInk;
-        }
-        if(_inkUses < 0){
-            _inkUses = 0;
         }
     }
     

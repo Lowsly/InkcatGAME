@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
 			health.Heal();
 			_animator.SetTrigger("Heal");
 		}
-		if (Input.GetButton("Fire3") == true){
+		if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true){
 			Health health = GetComponent<Health>();
 			health.InkUsed();
 		}
