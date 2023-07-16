@@ -125,6 +125,9 @@ public class Health : MonoBehaviour
             health = health + 1;
             Debug.Log("Heal");
             _inkUses = _inkUses -1;
+            if (health > 3){
+                health = 3;
+            }
         }
     }
     public void InkUsed(){
