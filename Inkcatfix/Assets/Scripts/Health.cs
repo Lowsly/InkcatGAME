@@ -28,13 +28,24 @@ public class Health : MonoBehaviour
     public Sprite emptyHeart;
 
     private Animator _animator;
+
+    public Color dmgColor;
+
+    public Color originalColor;
+    
     private bool _noJar = false;
 
     private int _maxInk = 5;
 
     private int _inkUses = 5;
+
+    private float colorTime; 
+     void Start(){
+        _animator = GetComponent<Animator>();
+    }
     void Update()
     {
+        
         if(_inkUses < 0){
             _inkUses = 0;
         }
@@ -112,8 +123,10 @@ public class Health : MonoBehaviour
     }
     public void Hit()
     {
+        StartCoroutine(HeartColor());
         health = health - 1;
         Debug.Log("Shoot");
+
         if (health <= -1){
             Destroy(player);
             //hearts[0].sprite = emptyHeart;
@@ -140,8 +153,21 @@ public class Health : MonoBehaviour
             _inkUses = _maxInk;
         }
     }
-    void Start(){
-        _animator = GetComponent<Animator>();
+
+    IEnumerator HeartColor(){
+        hearts[0].color = Color.red;
+        hearts[1].color = Color.red;
+        hearts[2].color = Color.red;
+        colorTime = 0;
+        while (colorTime < 1)
+        {
+            colorTime+= Time.deltaTime;    
+            yield return null;   
+        }
+        hearts[0].color = Color.white;
+        hearts[1].color = Color.white;
+        hearts[2].color = Color.white;
     }
+   
     
 }

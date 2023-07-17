@@ -1097,6 +1097,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 397591593, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
     - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: dmgColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: dmgColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: dmgColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: fullInkJar
       value: 
       objectReference: {fileID: -1858271977, guid: 2bbe0e381583b8441b20361a97bcf45f, type: 3}
@@ -1111,6 +1123,22 @@ PrefabInstance:
     - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: Ink.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: originalColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: originalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: originalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: originalColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1970739397, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: Ink.Array.data[0]
@@ -1191,7 +1219,7 @@ PrefabInstance:
     - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 3112409723863472841, guid: df0438b67c47ee2429dcb8d70d8a3680, type: 3}
+      objectReference: {fileID: 3112409723863472841, guid: 194c1d8e476d81846ac165fe3ea18132, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
 --- !u!1 &1209412422
