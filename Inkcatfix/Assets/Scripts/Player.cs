@@ -47,7 +47,9 @@ public class Player : MonoBehaviour
 	//heal 
 
 	private float _cdHeal = 0f;
-	private float _HealDelay = 1.5f;
+	private float _HealDelay = 0.5f;
+
+	private bool _healing;
 	//facing
 	float dirX;
 
@@ -61,13 +63,13 @@ public class Player : MonoBehaviour
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_animator = GetComponent<Animator>();
 		_firePoint = transform.Find("FirePoint");
-		Health health = GetComponent<Health>();
+		
 		
 	}
 
 	void Start()
     {
-		
+		health = GetComponent<Health>();
        
 	   localScale = transform.localScale;
 	
@@ -145,44 +147,47 @@ public class Player : MonoBehaviour
 			float horizontalVelocity = _movement.normalized.x * speed;
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
 			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false) {
-			_cdShoot = _shootDelay + Time.time;
-			if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0){
-				_attackRight =! _attackRight;
-				//Invoke("ShootHor",0f);
-				if (_attackRight == true ){
-					_animator.SetTrigger("ShootRight");
+				_cdShoot = _shootDelay + Time.time;
+				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0){
+					_attackRight =! _attackRight;
+					//Invoke("ShootHor",0f);
+					if (_attackRight == true ){
+						_animator.SetTrigger("ShootRight");
+					}
+					if (_attackRight == false ){
+						_animator.SetTrigger("ShootLeft");
+					}
+					//Invoke("Shoot",0.05f);
 				}
-				if (_attackRight == false ){
-					_animator.SetTrigger("ShootLeft");
+				if (_isGrounded == true && (horizontalInput == 1 || horizontalInput == -1) &&  verticalInput == 0 ){
+					//Invoke("ShootWalk",0f);
+					//Invoke("Shoot",0.05f);
+					_animator.SetTrigger("ShootWalk");
 				}
-				//Invoke("Shoot",0.05f);
-			}
-			if (_isGrounded == true && (horizontalInput == 1 || horizontalInput == -1) &&  verticalInput == 0 ){
-				//Invoke("ShootWalk",0f);
-				//Invoke("Shoot",0.05f);
-				_animator.SetTrigger("ShootWalk");
-			}
-			if (_isGrounded == true && horizontalInput == 0 && verticalInput == 1){
-				_animator.SetTrigger("ShootUp");
+				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 1){
+					_animator.SetTrigger("ShootUp");
 
-				//Invoke("ShootUp",0f);
-				//Invoke("Shoot",0.05f);
-			}
-			if (_isGrounded == true &&  (horizontalInput == 1 || horizontalInput == -1) && verticalInput == 1){
-				//("ShootDiagon",0f);
-				//Invoke("Shoot",0.05f);
-				_animator.SetTrigger("ShootDiagon");
-			}
+					//Invoke("ShootUp",0f);
+					//Invoke("Shoot",0.05f);
+				}
+				if (_isGrounded == true &&  (horizontalInput == 1 || horizontalInput == -1) && verticalInput == 1){
+					//("ShootDiagon",0f);
+					//Invoke("Shoot",0.05f);
+					_animator.SetTrigger("ShootDiagon");
+				}
 			
 		}
-		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && Time.time > _cdHeal){
-			Health health = GetComponent<Health>();
-			_cdHeal = _HealDelay + Time.time;
-			health.Heal();
-			_animator.SetTrigger("Heal");
+		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true){
+			_healing = true;
+			
+			if (Time.time > _cdHeal){
+				_cdHeal = _HealDelay + Time.time;
+				_healing = false;				
+				health.Heal();
+			}
+
 		}
 		if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true){
-			Health health = GetComponent<Health>();
 			health.InkUsed();
 		}
 	}

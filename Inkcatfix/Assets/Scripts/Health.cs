@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    private Animator _animator;
     private bool _noJar = false;
 
     private int _maxInk = 5;
@@ -125,6 +126,7 @@ public class Health : MonoBehaviour
             health = health + 1;
             Debug.Log("Heal");
             _inkUses = _inkUses -1;
+            _animator.SetTrigger("Heal");
             if (health > 3){
                 health = 3;
             }
@@ -137,6 +139,9 @@ public class Health : MonoBehaviour
         if (_inkUses > _maxInk) {
             _inkUses = _maxInk;
         }
+    }
+    void Start(){
+        _animator = GetComponent<Animator>();
     }
     
 }
