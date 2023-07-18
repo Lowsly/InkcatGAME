@@ -180,17 +180,19 @@ public class Health : MonoBehaviour
     }
 
     IEnumerator Damaged(){
-        colorTime2 = 5;
+        colorTime2 = 3;
         for(int j=0; j<colorTime2;j++){
-            _renderer.color = new Color (0, 0, 0, 0);
+            _renderer.color = new Color (0, 0, 0, 0.2f);
             colorTime3 = 0;
-            while (colorTime3 < 0.2)
+            while (colorTime3 < 0.09)
             {
                 colorTime3+= Time.deltaTime; 
                 yield return null;    
                 
             }
             _renderer.color = Color.white;
+            yield return null;  
+            
             
         }
          colorTime2 = 0;
