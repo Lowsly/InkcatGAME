@@ -39,9 +39,12 @@ public class Health : MonoBehaviour
 
     private int _inkUses = 5;
 
-    private float colorTime; 
+    private SpriteRenderer _renderer;
+
+    private float colorTime, colorTime2; 
      void Start(){
         _animator = GetComponent<Animator>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -124,7 +127,7 @@ public class Health : MonoBehaviour
     public void Hit()
     {
         StartCoroutine(HeartColor());
-        
+        StartCoroutine(Damaged());
         health = health - 1;
         Debug.Log("Shoot");
 
@@ -158,10 +161,11 @@ public class Health : MonoBehaviour
     IEnumerator HeartColor(){
         for (int i = 0; i<health; i++){
         hearts[health-1].color = Color.red;
+        //hearts[health-1].color = new Color (0, 0, 0, 0);
         }
       
         colorTime = 0;
-        while (colorTime < 1)
+        while (colorTime < 0.8)
         {
             colorTime+= Time.deltaTime;    
             yield return null;   
@@ -169,6 +173,19 @@ public class Health : MonoBehaviour
         hearts[0].color = Color.white;
         hearts[1].color = Color.white;
         hearts[2].color = Color.white;
+    }
+
+    IEnumerator Damaged(){
+        while (colorTime2 < 1)
+        _renderer.color = new Color (0, 0, 0, 0);
+        colorTime2+= Time.deltaTime; 
+        colorTime = 0;
+        while (colorTime < 0.2)
+        {
+            colorTime+= Time.deltaTime;    
+            yield return null;   
+        }
+        _renderer.color = Color.white;
     }
    
     
