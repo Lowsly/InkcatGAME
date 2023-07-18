@@ -41,7 +41,11 @@ public class Health : MonoBehaviour
 
     private SpriteRenderer _renderer;
 
-    private float colorTime, colorTime2; 
+    private float colorTime, colorTime2, colorTime3; 
+    private float _cdShoot = 0f;
+	private float _shootDelay = 0.5f;
+
+    
      void Start(){
         _animator = GetComponent<Animator>();
         _renderer = GetComponent<SpriteRenderer>();
@@ -176,16 +180,21 @@ public class Health : MonoBehaviour
     }
 
     IEnumerator Damaged(){
-        while (colorTime2 < 1)
-        _renderer.color = new Color (0, 0, 0, 0);
-        colorTime2+= Time.deltaTime; 
-        colorTime = 0;
-        while (colorTime < 0.2)
-        {
-            colorTime+= Time.deltaTime;    
-            yield return null;   
+        colorTime2 = 5;
+        for(int j=0; j<colorTime2;j++){
+            _renderer.color = new Color (0, 0, 0, 0);
+            colorTime3 = 0;
+            while (colorTime3 < 0.2)
+            {
+                colorTime3+= Time.deltaTime; 
+                yield return null;    
+                
+            }
+            _renderer.color = Color.white;
+            
         }
-        _renderer.color = Color.white;
+         colorTime2 = 0;
+        
     }
    
     
