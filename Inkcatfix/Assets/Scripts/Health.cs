@@ -124,6 +124,7 @@ public class Health : MonoBehaviour
     public void Hit()
     {
         StartCoroutine(HeartColor());
+        
         health = health - 1;
         Debug.Log("Shoot");
 
@@ -155,9 +156,10 @@ public class Health : MonoBehaviour
     }
 
     IEnumerator HeartColor(){
-        hearts[0].color = Color.red;
-        hearts[1].color = Color.red;
-        hearts[2].color = Color.red;
+        for (int i = 0; i<health; i++){
+        hearts[health-1].color = Color.red;
+        }
+      
         colorTime = 0;
         while (colorTime < 1)
         {
