@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int health;
-    public int numHearts;
+    public int health, numHearts;
 
     public GameObject player;
 
@@ -14,36 +13,19 @@ public class Health : MonoBehaviour
 
     public Image[] Ink;
 
-    public Sprite fullInk;
-    public Sprite emptyInk;
-
-    public Sprite fullInkJar;
-
-     public Sprite dosInkJar;
-
-    public Sprite emptyInkJar;
-
-    public Sprite brokenInkJar;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public Sprite fullInk, emptyInk, fullInkJar,  dosInkJar, emptyInkJar, brokenInkJar, fullHeart, emptyHeart;
 
     private Animator _animator;
 
-    public Color dmgColor;
-
-    public Color originalColor;
+    public Color dmgColor, originalColor;
     
     private bool _noJar = false;
 
-    private int _maxInk = 5;
-
-    private int _inkUses = 5;
+    private int _maxInk = 5,_inkUses = 5;
 
     private SpriteRenderer _renderer;
 
     private float colorTime, colorTime2, colorTime3; 
-    private float _cdShoot = 0f;
-	private float _shootDelay = 0.5f;
 
     
      void Start(){
@@ -128,8 +110,9 @@ public class Health : MonoBehaviour
             }
         }
     }
-    public int Hit()
+    public void Hit()
     {
+        
         StartCoroutine(HeartColor());
         StartCoroutine(Damaged());
         health = health + 1;
@@ -137,10 +120,9 @@ public class Health : MonoBehaviour
 
         if (health <= -1){
             Destroy(player);
-            //hearts[0].sprite = emptyHeart;
+            hearts[0].sprite = emptyHeart;
             Debug.Log("Sht");
         } 
-        return health;
     }
     public void Heal()
     {
@@ -166,37 +148,21 @@ public class Health : MonoBehaviour
     IEnumerator HeartColor(){
         for (int i = 0; i<health; i++){
         hearts[health-1].color = Color.red;
-        //hearts[health-1].color = new Color (0, 0, 0, 0);
         }
-      
-        colorTime = 0;
-        while (colorTime < 0.8)
-        {
-            colorTime+= Time.deltaTime;    
-            yield return null;   
-        }
+       yield return new WaitForSecondsRealtime(1f);
         hearts[0].color = Color.white;
         hearts[1].color = Color.white;
         hearts[2].color = Color.white;
     }
 
     IEnumerator Damaged(){
-        colorTime2 = 45;
-        for(int j=0; j<colorTime2;j++){
-            _renderer.color = new Color (0, 0, 0, 0f);
-            colorTime3 = 0;
-            var timesince = Time.time;
-            while (colorTime3 < 2.65)
+        for (int i = 0; i < 5; i++)
             {
-                colorTime3+= Time.deltaTime+timesince/Time.time; 
-                yield return null;    
-                
+             _renderer.color = new Color (0, 0, 0, 0f);
+             yield return new WaitForSecondsRealtime(.1f);
+             _renderer.color = Color.white;
+             yield return new WaitForSecondsRealtime(.1f);
             }
-            _renderer.color = Color.white;
-            yield return null;  
-            
-            
-        }
         
     }
    
