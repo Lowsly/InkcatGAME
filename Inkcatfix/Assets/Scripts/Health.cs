@@ -21,6 +21,8 @@ public class Health : MonoBehaviour
     
     private bool _noJar = false;
 
+    private bool _isImmune, _lowHealth;
+
     private int _maxInk = 5,_inkUses = 5;
 
     private SpriteRenderer _renderer;
@@ -111,22 +113,29 @@ public class Health : MonoBehaviour
         }
     }
     public void Hit()
-    {
-        
-        StartCoroutine(HeartColor());
-        StartCoroutine(Damaged());
-        health = health + 1;
-        Debug.Log("Shoot");
-
-        if (health <= -1){
-            Destroy(player);
-            hearts[0].sprite = emptyHeart;
-            Debug.Log("Sht");
-        } 
+    {   
+        if (_isImmune == false){
+            StartCoroutine(Immune());
+            StartCoroutine(HeartColor());
+            StartCoroutine(Damaged());
+            health = health - 1;
+            Debug.Log("Shoot");
+            
+            if (health == 0){
+                _lowHealth = true;
+                StartCoroutine(LowHealth());
+            }
+            if (health <= -1){
+                Destroy(player);
+                hearts[0].sprite = emptyHeart;
+                Debug.Log("Sht");
+            } 
+        }
     }
     public void Heal()
     {
         if (_inkUses > 0){
+            _lowHealth = false;
             health = health + 1;
             Debug.Log("Heal");
             _inkUses = _inkUses -1;
@@ -145,26 +154,53 @@ public class Health : MonoBehaviour
         }
     }
 
-    IEnumerator HeartColor(){
-        for (int i = 0; i<health; i++){
-        hearts[health-1].color = Color.red;
+    IEnumerator HeartColor()
+    {
+        for (int i = 0; i<health; i++)
+        {
+            hearts[health-1].color = Color.red;
         }
        yield return new WaitForSecondsRealtime(1f);
-        hearts[0].color = Color.white;
-        hearts[1].color = Color.white;
-        hearts[2].color = Color.white;
+       foreach (Image img in hearts)
+            {
+                img.color = Color.white;
+            }
     }
 
-    IEnumerator Damaged(){
-        for (int i = 0; i < 5; i++)
+    IEnumerator Damaged()
+    {
+        for (int i = 0; i < 4; i++)
             {
              _renderer.color = new Color (0, 0, 0, 0f);
              yield return new WaitForSecondsRealtime(.1f);
              _renderer.color = Color.white;
              yield return new WaitForSecondsRealtime(.1f);
+             Debug.Log("ay");
             }
         
     }
-   
-    
+
+    IEnumerator Immune() 
+    {
+     _isImmune = true;
+     yield return new WaitForSecondsRealtime(0.7f);
+     _isImmune = false;
+    }
+    IEnumerator LowHealth() 
+    {
+        while (_lowHealth == true){
+            foreach (Image img in hearts)
+            {
+                img.color = Color.red;
+            }
+            yield return new WaitForSecondsRealtime(0.45f);
+            foreach (Image img in hearts)
+            {
+                img.color = Color.white;
+            }
+            yield return new WaitForSecondsRealtime(0.45f);
+            
+        }
+        yield return null;
+    }
 }
