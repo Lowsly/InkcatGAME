@@ -128,11 +128,11 @@ public class Health : MonoBehaviour
             }
         }
     }
-    public void Hit()
+    public int Hit()
     {
         StartCoroutine(HeartColor());
         StartCoroutine(Damaged());
-        health = health - 1;
+        health = health + 1;
         Debug.Log("Shoot");
 
         if (health <= -1){
@@ -140,6 +140,7 @@ public class Health : MonoBehaviour
             //hearts[0].sprite = emptyHeart;
             Debug.Log("Sht");
         } 
+        return health;
     }
     public void Heal()
     {
@@ -180,13 +181,14 @@ public class Health : MonoBehaviour
     }
 
     IEnumerator Damaged(){
-        colorTime2 = 3;
+        colorTime2 = 45;
         for(int j=0; j<colorTime2;j++){
-            _renderer.color = new Color (0, 0, 0, 0.2f);
+            _renderer.color = new Color (0, 0, 0, 0f);
             colorTime3 = 0;
-            while (colorTime3 < 0.09)
+            var timesince = Time.time;
+            while (colorTime3 < 2.65)
             {
-                colorTime3+= Time.deltaTime; 
+                colorTime3+= Time.deltaTime+timesince/Time.time; 
                 yield return null;    
                 
             }
@@ -195,7 +197,6 @@ public class Health : MonoBehaviour
             
             
         }
-         colorTime2 = 0;
         
     }
    

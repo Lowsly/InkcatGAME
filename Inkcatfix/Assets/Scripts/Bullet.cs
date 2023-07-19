@@ -39,7 +39,6 @@ public GameObject splashEndPrefab;
     // Update is called once per frame
     void Update()
     {
-        _isTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 		//Physics2D.CapsuleCast
 		//  Move object
 		Vector2 movement = direction.normalized * speed * Time.deltaTime;

@@ -1164,6 +1164,10 @@ PrefabInstance:
       propertyPath: hearts.Array.data[2]
       value: 
       objectReference: {fileID: 2130611176}
+    - target: {fileID: 8801876571137600721, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600723, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: m_Name
       value: Player (1)
