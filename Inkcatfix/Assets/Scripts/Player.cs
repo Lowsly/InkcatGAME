@@ -5,9 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	//Bullets
-	public GameObject bulletPrefab;
-	public GameObject splashPrefab;
-    public GameObject shooter;
+	public GameObject bulletPrefab, splashPrefab, shooter;
 	private Transform _firePoint;
 
 	//Basic
@@ -44,12 +42,13 @@ public class Player : MonoBehaviour
 	private bool _attackUp;
 	private bool _attackHorizontal;
 
+	private float horizontalInput, verticalInput;
 	//heal 
 
+	private bool _stunned = false;
 	private float _cdHeal = 0f;
 	private float _HealDelay = 0.5f;
 
-	private bool _healing;
 	//facing
 	float dirX;
 
@@ -77,117 +76,67 @@ public class Player : MonoBehaviour
 
     void Update()
     {	
-		
-		dirX = Input.GetAxis ("Horizontal");		
-		float horizontalInput = Input.GetAxisRaw("Horizontal");
-		float verticalInput = Input.GetAxisRaw("Vertical");
-		/*mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x)* Mathf.Rad2Deg - 90f;
-		_firePoint.localRotation = Quaternion.Euler(0,0, angle);*/
-			// Movement
-		_movement = new Vector2(horizontalInput, 0f);
+		horizontalInput = Input.GetAxisRaw("Horizontal");
+		verticalInput = Input.GetAxisRaw("Vertical");
+		if (_stunned == false)
+		{
+			dirX = Input.GetAxis ("Horizontal");
+			_movement = new Vector2(horizontalInput, 0f);
+			_isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-			// Flip character
-		/*if (horizontalInput < 0f && _facingRight == true) {
-			Flip();
-		} else if (horizontalInput > 0f && _facingRight == false) {
-			Flip();
-		}*/
-
-		// Is Grounded?
-		_isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-		// Is Jumping?
-		if (Input.GetButtonDown("Jump") && _isGrounded == true && _isAttacking == false) {
-			_rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-		}
-			
-	}
-	public void ShootHor(){
-		float verticalInput = Input.GetAxisRaw("Vertical");
-		if(localScale.x >0 ){
-				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
-				var splash = Instantiate (splashPrefab, new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
-		}
-		if(localScale.x < 0 ){
-				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0,180));
-				var splash = Instantiate (splashPrefab,new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
-		}
-		
-	}
-	public void ShootUp(){
-		
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 90));
-		var splash = Instantiate (splashPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 90));
-	}
-	public void ShootWalk(){
-		if(localScale.x >0){
-		var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
-		var splash = Instantiate (splashPrefab,new Vector3 (0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
-		}
-		if(localScale.x < 0){
-		var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 180));
-		var splash = Instantiate (splashPrefab,new Vector3 (-0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
+			// Is Jumping?
+			if (Input.GetButtonDown("Jump") && _isGrounded == true && _isAttacking == false) {
+				_rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+			}
 		}
 	}
-	public void ShootDiagon(){
-		if(localScale.x >0){
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,40));
-		var splash = Instantiate (splashPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 40));
-		}
-		if(localScale.x <0){
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,140));
-		var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 140));
-		}
-	}
+	
 	void FixedUpdate()
 	{		
-			float horizontalInput = Input.GetAxisRaw("Horizontal");
-			float verticalInput = Input.GetAxisRaw("Vertical");
 			float horizontalVelocity = _movement.normalized.x * speed;
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
-			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false) {
+			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false && _stunned == false) 
+			{
 				_cdShoot = _shootDelay + Time.time;
-				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0){
+				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0)
+				{
 					_attackRight =! _attackRight;
-					//Invoke("ShootHor",0f);
-					if (_attackRight == true ){
+					if (_attackRight == true )
+					{
 						_animator.SetTrigger("ShootRight");
 					}
-					if (_attackRight == false ){
+					if (_attackRight == false )
+					{
 						_animator.SetTrigger("ShootLeft");
 					}
-					//Invoke("Shoot",0.05f);
 				}
-				if (_isGrounded == true && (horizontalInput == 1 || horizontalInput == -1) &&  verticalInput == 0 ){
-					//Invoke("ShootWalk",0f);
-					//Invoke("Shoot",0.05f);
+				if (_isGrounded == true && (horizontalInput == 1 || horizontalInput == -1) &&  verticalInput == 0 )
+				{
 					_animator.SetTrigger("ShootWalk");
 				}
-				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 1){
+				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 1)
+				{
 					_animator.SetTrigger("ShootUp");
-
-					//Invoke("ShootUp",0f);
-					//Invoke("Shoot",0.05f);
 				}
-				if (_isGrounded == true &&  (horizontalInput == 1 || horizontalInput == -1) && verticalInput == 1){
-					//("ShootDiagon",0f);
-					//Invoke("Shoot",0.05f);
+				if (_isGrounded == true &&  (horizontalInput == 1 || horizontalInput == -1) && verticalInput == 1)
+				{
 					_animator.SetTrigger("ShootDiagon");
+				
 				}
 			
 		}
-		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true){
-			_healing = true;
+		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && _stunned == false) 
+		{
 			
-			if (Time.time > _cdHeal){
-				_cdHeal = _HealDelay + Time.time;
-				_healing = false;				
+			if (Time.time > _cdHeal)
+			{
+				_cdHeal = _HealDelay + Time.time;			
 				health.Heal();
 			}
 
 		}
-		if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true){
+		if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true)
+		{
 			health.InkUsed();
 		}
 	}
@@ -201,31 +150,44 @@ public class Player : MonoBehaviour
 		_animator.SetFloat("SpeedShoot", _cdShoot);
 
 		// Animator
-		if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+		if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) 
+		{
 			_isAttacking = true;
-		} else {
+		} 
+		else 
+		{
 			_isAttacking = false;
 		}
-
 		// Long Idle
-		if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Isidle")) {
+		if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Isidle")) 
+		{
 			_longIdleTimer += Time.deltaTime;
 
-			if (_longIdleTimer >= longIdleTime) {
+			if (_longIdleTimer >= longIdleTime) 
+			{
 				_animator.SetTrigger("LongIdle");
 			}
-		} else {
+		} 
+		else 
+		{
 			_longIdleTimer = 0f;
 		}
 	}
 
+	public void IsStunned(){
+		StartCoroutine(Stunned());
+	}
+
+	public IEnumerator Stunned() 
+    {
+		_movement = new Vector2 (0,_rigidbody.velocity.y);
+		_stunned = true;
+		yield return new WaitForSecondsRealtime(3.7f);
+		_stunned = false;
+    }
+
 	private void Flip()
-	{
-		/*_facingRight = !_facingRight;
-		float localScaleX = transform.localScale.x;
-		localScaleX = localScaleX * -1f;
-		transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);*/
-		
+	{	
 		if (dirX > 0)
 			_facingRight = true;
 		else
@@ -235,61 +197,49 @@ public class Player : MonoBehaviour
 			localScale.x *= -1;
 		transform.localScale = localScale;
 	}
-
-	public void Shoot()
-	{
+	public void ShootHor(){
+		if(localScale.x >0 )
+		{
+				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
+				var splash = Instantiate (splashPrefab, new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
+		}
+		if(localScale.x < 0 )
+		{
+				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0,180));
+				var splash = Instantiate (splashPrefab,new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
+		}
 		
-			//if(_firePoint.localRotation.z >= -180 && _firePoint.localRotation.z <= 0 && _facingRight == true){
-			
-			//GameObject myBullet = Instantiate(bulletPrefab, _firePoint.position, Vector2.left) as GameObject;
-			//
-			/*
-			float horizontalInput = Input.GetAxisRaw("Horizontal");
-			float verticalInput = Input.GetAxisRaw("Vertical");
-			GameObject myBullet = Instantiate(bulletPrefab, _firePoint.position, Quaternion.identity) as GameObject;
-			GameObject mySplash = Instantiate(splashPrefab, _firePoint.position, Quaternion.identity) as GameObject;
-			Bullet bulletComponent = myBullet.GetComponent<Bullet>();
-			Splash splashComponent = mySplash.GetComponent<Splash>();
-
-			if (horizontalInput == -1f && verticalInput == 0f) {
-				// Left
-				bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 180);
-				splashComponent.transform.localRotation = Quaternion.Euler(0,0, 180);
-				
-			}  
-			if (horizontalInput == -1f && verticalInput == 1f) {	
-
-					bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 135);
-					splashComponent.transform.localRotation = Quaternion.Euler(0,0, 135);
-
-			}
-			if (horizontalInput == 1f && verticalInput == 1f){
-				
-					bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 45);
-					splashComponent.transform.localRotation = Quaternion.Euler(0,0, 45);
-			}
-			if (horizontalInput == 1f && verticalInput == 0f){
-				// Right
-				bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 0);
-				splashComponent.transform.localRotation = Quaternion.Euler(0,0, 0);
-			}
-			if (horizontalInput == 0f && verticalInput == 0f){
-				if(_facingRight == true){
-					bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 0);
-					splashComponent.transform.localRotation = Quaternion.Euler(0,0, 0);
-				}
-				else {
-					bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 180);
-					splashComponent.transform.localRotation = Quaternion.Euler(0,0, 180);
-				}
-			}
-			if (verticalInput == 1f && horizontalInput == 0f ){
-				// Right
-				bulletComponent.transform.localRotation = Quaternion.Euler(0,0, 90);
-				splashComponent.transform.localRotation = Quaternion.Euler(0,0, 90);
-			}
-			*/
-
 	}
-
+	public void ShootUp()
+	{
+		var firedBullet = Instantiate (bulletPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 90));
+		var splash = Instantiate (splashPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 90));
+	}
+	public void ShootWalk()
+	{
+		if(localScale.x >0)
+		{
+			var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
+			var splash = Instantiate (splashPrefab,new Vector3 (0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
+		}
+		if(localScale.x < 0)
+		{
+			var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 180));
+			var splash = Instantiate (splashPrefab,new Vector3 (-0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
+		}
+	}
+	public void ShootDiagon()
+	{
+		if(localScale.x >0)
+		{
+			var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,40));
+			var splash = Instantiate (splashPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 40));
+		}
+		if(localScale.x <0)
+		{
+			var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,140));
+			var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 140));
+		}
+	}
+	
 }

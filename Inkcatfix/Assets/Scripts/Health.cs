@@ -135,11 +135,19 @@ public class Health : MonoBehaviour
     public void Heal()
     {
         if (_inkUses > 0){
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (horizontalInput == 0){
+                _animator.SetTrigger("Heal");
+            }
+            if (horizontalInput != 0){
+                _animator.SetTrigger("HealWalk");
+            }
             _lowHealth = false;
             health = health + 1;
             Debug.Log("Heal");
             _inkUses = _inkUses -1;
-            _animator.SetTrigger("Heal");
+            
+            
             if (health > 3){
                 health = 3;
             }
