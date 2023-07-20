@@ -118,7 +118,7 @@ public class Health : MonoBehaviour
             StartCoroutine(Immune());
             StartCoroutine(HeartColor());
             StartCoroutine(Damaged());
-            health = health - 1;
+            health = health + 1;
             Debug.Log("Shoot");
             
             if (health == 0){
