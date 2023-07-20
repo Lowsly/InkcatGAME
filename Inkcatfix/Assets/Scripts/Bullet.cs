@@ -36,7 +36,10 @@ public GameObject splashEndPrefab;
     {
 		Vector2 movement = direction.normalized * speed * Time.deltaTime;
 		transform.Translate(movement);
-
+		_isTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+		if (_isTouching == true){
+			DestroyBullet();
+		}
 		// Change bullet's color over time
 		/*float _timeSinceStarted = Time.time - _startingTime;
 		float _percentageCompleted = _timeSinceStarted / livingTime;

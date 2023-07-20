@@ -93,9 +93,10 @@ public class Player : MonoBehaviour
 	
 	void FixedUpdate()
 	{		
+		if(_stunned == false ){
 			float horizontalVelocity = _movement.normalized.x * speed;
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
-			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false && _stunned == false) 
+			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false ) 
 			{
 				_cdShoot = _shootDelay + Time.time;
 				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0)
@@ -124,20 +125,21 @@ public class Player : MonoBehaviour
 				
 				}
 			
-		}
-		if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && _stunned == false) 
-		{
-			
-			if (Time.time > _cdHeal)
-			{
-				_cdHeal = _HealDelay + Time.time;			
-				health.Heal();
 			}
+			if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && _stunned == false) 
+			{
+				
+				if (Time.time > _cdHeal)
+				{
+					_cdHeal = _HealDelay + Time.time;			
+					health.Heal();
+				}
 
-		}
-		if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true)
-		{
-			health.InkUsed();
+			}
+			if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true)
+			{
+				health.InkUsed();
+			}
 		}
 	}
 
@@ -180,9 +182,10 @@ public class Player : MonoBehaviour
 
 	public IEnumerator Stunned() 
     {
-		_movement = new Vector2 (0,_rigidbody.velocity.y);
+		_animator.SetTrigger("Stunned");
+		_rigidbody.velocity = new Vector2((-1*dirX)/1.25f, _rigidbody.velocity.y);
 		_stunned = true;
-		yield return new WaitForSecondsRealtime(3.7f);
+		yield return new WaitForSecondsRealtime(0.6f);
 		_stunned = false;
     }
 
