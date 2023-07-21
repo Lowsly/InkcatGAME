@@ -186,16 +186,18 @@ public class Player : MonoBehaviour
 	}
 
 	public void IsStunned(){
-		_animator.SetTrigger("Stunned");
 		StartCoroutine(Stunned());
 	}
 
 	public IEnumerator Stunned() 
     {
-		
-		_rigidbody.velocity = new Vector2((-1*dirX)/1.45f, _rigidbody.velocity.y);
-		_stunned = true;
-		yield return new WaitForSecondsRealtime(0.6f);
+		if (_stunned == false)
+		{
+			_animator.SetTrigger("Stunned");
+			_rigidbody.velocity = new Vector2((-1*dirX)/1.45f, _rigidbody.velocity.y);
+			_stunned = true;
+			yield return new WaitForSecondsRealtime(0.5f);
+		}
 		_stunned = false;
     }
 
