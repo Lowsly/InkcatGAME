@@ -1234,6 +1234,10 @@ PrefabInstance:
       propertyPath: hearts.Array.data[2]
       value: 
       objectReference: {fileID: 2130611176}
+    - target: {fileID: 8801876571072096529, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.325
+      objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600721, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -1245,6 +1249,14 @@ PrefabInstance:
     - target: {fileID: 8801876571137600725, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801876571137600725, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801876571137600725, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600725, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1296,7 +1308,7 @@ PrefabInstance:
       objectReference: {fileID: 3112409723863472841, guid: 194c1d8e476d81846ac165fe3ea18132, type: 3}
     - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: groundCheckRadius
-      value: 0.09
+      value: 0.025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
