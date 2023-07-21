@@ -96,6 +96,15 @@ public class Player : MonoBehaviour
 		if(_stunned == false ){
 			float horizontalVelocity = _movement.normalized.x * speed;
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
+			if (Input.GetButton("Fire1") && _isGrounded == false && Time.time > _cdShoot && Input.GetButton("Fire2") == false ) 
+			{
+				if(_rigidbody.velocity.y>0.1){
+					_animator.SetTrigger("ShootJumpUp");
+				}
+				if(_rigidbody.velocity.y<=0){
+					_animator.SetTrigger("ShootJumpDown");
+				}
+			}
 			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false ) 
 			{
 				_cdShoot = _shootDelay + Time.time;
@@ -184,7 +193,7 @@ public class Player : MonoBehaviour
 	public IEnumerator Stunned() 
     {
 		
-		_rigidbody.velocity = new Vector2((-1*dirX)/1.25f, _rigidbody.velocity.y);
+		_rigidbody.velocity = new Vector2((-1*dirX)/1.45f, _rigidbody.velocity.y);
 		_stunned = true;
 		yield return new WaitForSecondsRealtime(0.6f);
 		_stunned = false;
