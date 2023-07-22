@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 	private float _HealDelay = 0.5f;
 
 	//facing
-	float dirX;
+	float dirX, dirXx;
 
 	Vector3 localScale;
 
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
 	
     }
 
-    void Update()
+    public void Update()
     {	
 		horizontalInput = Input.GetAxisRaw("Horizontal");
 		verticalInput = Input.GetAxisRaw("Vertical");
@@ -185,8 +185,10 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void IsStunned(){
-		StartCoroutine(Stunned());
+	public void IsStunned(bool _isImmune){
+		if (_isImmune == true){
+			StartCoroutine(Stunned());
+		}
 	}
 
 	public IEnumerator Stunned() 
@@ -194,10 +196,26 @@ public class Player : MonoBehaviour
 		if (_stunned == false)
 		{
 			_animator.SetTrigger("Stunned");
-			_rigidbody.velocity = new Vector2((-1*dirX)/1.45f, _rigidbody.velocity.y);
+			if (_facingRight == true)
+			{
+				dirXx = 1;
+			}
+			else 
+			{
+				dirXx = -1;
+			}
+			if(dirX!=0)
+			{
+				_rigidbody.velocity = new Vector2((-1*dirX)/1.45f, _rigidbody.velocity.y);
+			}
+			if(dirX==0)
+			{
+				_rigidbody.velocity = new Vector2((-1*dirXx)/1.45f, _rigidbody.velocity.y);
+			}
+			
 			_stunned = true;
-			yield return new WaitForSecondsRealtime(0.5f);
 		}
+		yield return new WaitForSecondsRealtime(0.5f);
 		_stunned = false;
     }
 

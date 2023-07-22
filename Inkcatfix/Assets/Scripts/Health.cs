@@ -114,11 +114,12 @@ public class Health : MonoBehaviour
     }
     public void Hit()
     {   
+        
         if (_isImmune == false){
             StartCoroutine(Immune());
             StartCoroutine(HeartColor());
             StartCoroutine(Damaged());
-            health = health + 1;
+            health = health - 1;
             Debug.Log("Shoot");
             
             if (health == 0){
@@ -177,7 +178,7 @@ public class Health : MonoBehaviour
 
     IEnumerator Damaged()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 6; i++)
             {
              _renderer.color = new Color (0, 0, 0, 0f);
              yield return new WaitForSecondsRealtime(.1f);
@@ -190,9 +191,12 @@ public class Health : MonoBehaviour
 
     IEnumerator Immune() 
     {
-     _isImmune = true;
-     yield return new WaitForSecondsRealtime(0.7f);
-     _isImmune = false;
+        Player player = GetComponent<Player>();
+        _isImmune = true;
+        player.IsStunned(_isImmune);
+        yield return new WaitForSecondsRealtime(1f);
+        _isImmune = false;
+        player.IsStunned(_isImmune);
     }
     IEnumerator LowHealth() 
     {

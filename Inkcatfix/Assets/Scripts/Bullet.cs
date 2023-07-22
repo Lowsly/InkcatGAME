@@ -19,6 +19,8 @@ public GameObject splashEndPrefab;
 	private SpriteRenderer _renderer;
 	private float _startingTime;
 
+	private bool _isImmune = true;
+
 	void Awake()
 	{
 		_renderer = GetComponent<SpriteRenderer>();
@@ -54,7 +56,7 @@ public GameObject splashEndPrefab;
            
             
                 health.Hit();
-				player.IsStunned();
+				
             
             DestroyBullet();
     }
