@@ -193,10 +193,10 @@ public class Health : MonoBehaviour
     {
         Player player = GetComponent<Player>();
         _isImmune = true;
-        player.IsStunned(_isImmune);
+        player.IsStunned(_isImmune, null);
         yield return new WaitForSecondsRealtime(1f);
         _isImmune = false;
-        player.IsStunned(_isImmune);
+        player.IsStunned(_isImmune, null);
     }
     IEnumerator LowHealth() 
     {

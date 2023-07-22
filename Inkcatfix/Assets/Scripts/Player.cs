@@ -185,7 +185,8 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void IsStunned(bool _isImmune){
+
+	public void IsStunned(bool? _isImmune, bool? _rightSide){
 		if (_isImmune == true){
 			StartCoroutine(Stunned());
 		}
