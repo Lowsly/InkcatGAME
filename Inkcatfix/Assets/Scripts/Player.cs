@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
 
 	//Ground
 
-	public Transform groundCheck;
-	public LayerMask groundLayer;
-	public float groundCheckRadius;
+	public Transform groundCheck, rightSide, leftSide;
+	public LayerMask groundLayer, enemyLayer;
+	public float groundCheckRadius, sideCheckSize, sideSize;
 
 	// References
 	private Rigidbody2D _rigidbody;
@@ -44,8 +44,7 @@ public class Player : MonoBehaviour
 
 	private float horizontalInput, verticalInput;
 	//heal 
-
-	private bool _stunned = false;
+	private bool _stunned = false, _rightSided, _leftSided, _side;
 	private float _cdHeal = 0f;
 	private float _HealDelay = 0.5f;
 
@@ -83,14 +82,27 @@ public class Player : MonoBehaviour
 			dirX = Input.GetAxis ("Horizontal");
 			_movement = new Vector2(horizontalInput, 0f);
 			_isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-			// Is Jumping?
+			_rightSided = Physics2D.OverlapBox(rightSide.position, new Vector2(sideCheckSize/sideSize,sideCheckSize), sideCheckSize/2, enemyLayer);
+			_leftSided = Physics2D.OverlapBox(leftSide.position, new Vector2(sideCheckSize/sideSize,sideCheckSize), sideCheckSize/2, enemyLayer);
+			if(_rightSided == true){
+				_side = true;
+				_rightSided = false;
+			}
+			if(_leftSided == true){
+				_side = false;
+				_leftSided = false;
+			}
 			if (Input.GetButtonDown("Jump") && _isGrounded == true && _isAttacking == false) {
 				_rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 			}
 		}
 	}
-	
+	void OnDrawGizmosSelected(){
+		Gizmos.color = new Color(1, 1, 0, 0.75F);
+		Gizmos.DrawWireCube(rightSide.position,new Vector2 (sideCheckSize/sideSize,sideCheckSize));
+		Gizmos.DrawWireCube(leftSide.position,new Vector2 (sideCheckSize/sideSize,sideCheckSize));
+
+	}
 	void FixedUpdate()
 	{		
 		if(_stunned == false ){
@@ -184,10 +196,17 @@ public class Player : MonoBehaviour
 			_longIdleTimer = 0f;
 		}
 	}
+	public void rightSided(){
+		_rightSided = true;
+	}
+	public void leftSided(){
+		_rightSided = false;
+	}
 
+	public void IsStunned(bool _isImmune){
+		if (_isImmune == true)
+		{
 
-	public void IsStunned(bool? _isImmune, bool? _rightSide){
-		if (_isImmune == true){
 			StartCoroutine(Stunned());
 		}
 	}
@@ -196,6 +215,12 @@ public class Player : MonoBehaviour
     {
 		if (_stunned == false)
 		{
+			if (_side == false){
+				Debug.Log("izquierda");
+			}
+			if (_side == true){
+				Debug.Log("derecha");
+			}
 			_animator.SetTrigger("Stunned");
 			if (_facingRight == true)
 			{

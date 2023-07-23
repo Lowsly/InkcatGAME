@@ -120,7 +120,6 @@ public class Health : MonoBehaviour
             StartCoroutine(HeartColor());
             StartCoroutine(Damaged());
             health = health - 1;
-            Debug.Log("Shoot");
             
             if (health == 0){
                 _lowHealth = true;
@@ -184,7 +183,6 @@ public class Health : MonoBehaviour
              yield return new WaitForSecondsRealtime(.1f);
              _renderer.color = Color.white;
              yield return new WaitForSecondsRealtime(.1f);
-             Debug.Log("ay");
             }
         
     }
@@ -193,10 +191,10 @@ public class Health : MonoBehaviour
     {
         Player player = GetComponent<Player>();
         _isImmune = true;
-        player.IsStunned(_isImmune, null);
+        player.IsStunned(_isImmune);
         yield return new WaitForSecondsRealtime(1f);
         _isImmune = false;
-        player.IsStunned(_isImmune, null);
+        player.IsStunned(_isImmune);
     }
     IEnumerator LowHealth() 
     {

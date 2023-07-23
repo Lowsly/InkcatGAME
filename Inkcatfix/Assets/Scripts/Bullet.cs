@@ -19,7 +19,6 @@ public GameObject splashEndPrefab;
 	private SpriteRenderer _renderer;
 	private float _startingTime;
 
-	private bool _isImmune = true;
 
 	void Awake()
 	{
@@ -52,15 +51,9 @@ public GameObject splashEndPrefab;
 	void OnTriggerEnter2D(Collider2D collision)
     {
             Health health = collision.GetComponent<Health>();
-			Player player = collision.GetComponent<Player>();
-           
-            
                 health.Hit();
-				
-            
             DestroyBullet();
     }
-	
 	void DestroyBullet(){
 		Instantiate (splashEndPrefab, transform.position, Quaternion.identity);
 		Destroy(gameObject);

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SideDetector : MonoBehaviour
+public class RightDetector : MonoBehaviour
 {
-    public void left()
+       public void right()
     {
 			Player player = GetComponent<Player>();
-            player.leftSided();
+            player.rightSided();
     }
 }
