@@ -196,12 +196,6 @@ public class Player : MonoBehaviour
 			_longIdleTimer = 0f;
 		}
 	}
-	public void rightSided(){
-		_rightSided = true;
-	}
-	public void leftSided(){
-		_rightSided = false;
-	}
 
 	public void IsStunned(bool _isImmune){
 		if (_isImmune == true)
@@ -215,29 +209,27 @@ public class Player : MonoBehaviour
     {
 		if (_stunned == false)
 		{
-			if (_side == false){
-				Debug.Log("izquierda");
-			}
-			if (_side == true){
-				Debug.Log("derecha");
-			}
-			_animator.SetTrigger("Stunned");
-			if (_facingRight == true)
+			if (_side == false)
 			{
-				dirXx = 1;
+				dirXx = -1;
+				Debug.Log("izquierda");
 			}
 			else 
 			{
-				dirXx = -1;
+				Debug.Log("derecha");
+				dirXx = 1;
 			}
-			if(dirX!=0)
+			if (_facingRight == true)
 			{
-				_rigidbody.velocity = new Vector2((-1*dirX)/1.45f, _rigidbody.velocity.y);
+				dirX = 1;
 			}
-			if(dirX==0)
+			else 
 			{
-				_rigidbody.velocity = new Vector2((-1*dirXx)/1.45f, _rigidbody.velocity.y);
+				dirX =-1;
 			}
+			_animator.SetTrigger("Stunned");
+			
+				_rigidbody.velocity = new Vector2((-1*dirX*dirXx)/1.45f, _rigidbody.velocity.y);
 			
 			_stunned = true;
 		}
