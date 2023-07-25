@@ -28,7 +28,7 @@ public GameObject splashEndPrefab;
 
 	void Start()
     {
-		
+		Health health = GetComponent<Health>();
 		_startingTime = Time.time;
 		Invoke ("DestroyBullet",livingTime);
     }
@@ -37,6 +37,7 @@ public GameObject splashEndPrefab;
     {
 		Vector2 movement = direction.normalized * speed * Time.deltaTime;
 		transform.Translate(movement);
+		
 		_isTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 		if (_isTouching == true){
 			DestroyBullet();
@@ -51,7 +52,7 @@ public GameObject splashEndPrefab;
 	void OnTriggerEnter2D(Collider2D collision)
     {
             Health health = collision.GetComponent<Health>();
-                health.Hit();
+            health.Hit();
             DestroyBullet();
     }
 	void DestroyBullet(){

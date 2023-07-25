@@ -117,9 +117,10 @@ public class Health : MonoBehaviour
         
         if (_isImmune == false){
             StartCoroutine(Immune());
-            StartCoroutine(HeartColor());
+           
             StartCoroutine(Damaged());
             health = health - 1;
+             StartCoroutine(HeartColor());
             
             if (health == 0){
                 _lowHealth = true;
@@ -166,7 +167,7 @@ public class Health : MonoBehaviour
     {
         for (int i = 0; i<health; i++)
         {
-            hearts[health-1].color = Color.red;
+            hearts[health].color = Color.red;
         }
        yield return new WaitForSecondsRealtime(1f);
        foreach (Image img in hearts)
