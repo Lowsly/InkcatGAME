@@ -1190,6 +1190,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8801876571137600724, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801876571137600724, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3333334
+      objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600725, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1242,6 +1250,10 @@ PrefabInstance:
       propertyPath: sideSize
       value: 3.8
       objectReference: {fileID: 0}
+    - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3112409723863472841, guid: df0438b67c47ee2429dcb8d70d8a3680, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
 --- !u!1 &1209412422

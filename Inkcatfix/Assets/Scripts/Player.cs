@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 		if(_stunned == false ){
 			float horizontalVelocity = _movement.normalized.x * speed;
 			_rigidbody.velocity = new Vector2(horizontalVelocity, _rigidbody.velocity.y);
-			if (Input.GetButton("Fire1") && _isGrounded == true && Time.time > _cdShoot && Input.GetButton("Fire2") == false ) 
+			if (Input.GetButton("Fire1") && Time.time > _cdShoot && Input.GetButton("Fire2") == false ) 
 			{
 				_cdShoot = _shootDelay + Time.time;
 				if (_isGrounded == true && horizontalInput == 0 && verticalInput == 0)
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
 					_animator.SetTrigger("ShootDiagon");
 				
 				}
-				if (_isGrounded == false && (horizontalInput == 1 || horizontalInput == -1)) 
+				if (_isGrounded == false && (horizontalInput == 1 || horizontalInput == -1 || horizontalInput == 0)) 
 				{
 					if(_rigidbody.velocity.y>0 && _rigidbody.velocity.y<3.9){
 						_animator.SetTrigger("ShootJumpUp");

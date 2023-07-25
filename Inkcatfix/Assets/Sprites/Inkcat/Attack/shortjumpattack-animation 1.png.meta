@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 37b14f9aedba3f742b32bd55b2f20767
+guid: 77401b2a6282ed441b0d2895d6e47fc9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shortjumpattack-animation_0
+      name: shortjumpattack-animation 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,41 +125,41 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a71d10146eac6748930cb000e01a9c3
-      internalID: -1690680024
+      spriteID: 732994d14013eda4db2cefd876be03e7
+      internalID: 182763841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shortjumpattack-animation_1
+      name: shortjumpattack-animation 1_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 63
         y: 64
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2258c719c86018c4598134937a896b56
-      internalID: -544680952
+      spriteID: 38a0e8f497509c14189445b1e5e7a22c
+      internalID: 1363370053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shortjumpattack-animation_2
+      name: shortjumpattack-animation 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -167,20 +167,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe86f8527b1d2d740aa5705d04616416
-      internalID: -976792556
+      spriteID: 6559333b46a18e24ca77b02fef0b7004
+      internalID: 2059934520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shortjumpattack-animation_3
+      name: shortjumpattack-animation 1_3
       rect:
         serializedVersion: 2
         x: 64
@@ -188,14 +188,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 339d3fc5ebd1e054b9e01d49ccb27dec
-      internalID: 760391418
+      spriteID: b383f7c25af03384ebbfcbb70f706fbe
+      internalID: -1060770740
       vertices: []
       indices: 
       edges: []
@@ -211,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      shortjumpattack-animation_1: -544680952
-      shortjumpattack-animation_3: 760391418
-      shortjumpattack-animation_0: -1690680024
-      shortjumpattack-animation_2: -976792556
+      shortjumpattack-animation 1_2: 2059934520
+      shortjumpattack-animation 1_3: -1060770740
+      shortjumpattack-animation 1_1: 1363370053
+      shortjumpattack-animation 1_0: 182763841
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
