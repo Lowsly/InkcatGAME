@@ -19,9 +19,7 @@ public class Health : MonoBehaviour
 
     public Color dmgColor, originalColor;
     
-    private bool _noJar = false;
-
-    private bool _isImmune, _lowHealth;
+    private bool _noJar, _isImmune, _lowHealth, _uniqueJarBreak;
 
     private int _maxInk = 5,_inkUses = 5;
 
@@ -58,11 +56,18 @@ public class Health : MonoBehaviour
             }
         }
         if (_noJar == false){
+            if(_inkUses==1){
+                 _uniqueJarBreak = true;
+            }
+            if(_inkUses!=1){
+                _uniqueJarBreak = false;
+            }
             if(_inkUses < 1){
                 Ink[2].sprite = emptyInk;
                 Ink[1].sprite = emptyInk;
                 Ink[0].sprite = brokenInkJar;
                 _noJar = true;
+                
             }
             if(_inkUses == 1){
                 Ink[2].sprite = emptyInk;
@@ -91,6 +96,7 @@ public class Health : MonoBehaviour
             }
         }
         if (_noJar == true) {
+            
             _maxInk = 2;
             if (_inkUses > 2){
                 _inkUses = 2;
@@ -137,15 +143,22 @@ public class Health : MonoBehaviour
     {
         if (_inkUses > 0){
             float horizontalInput = Input.GetAxisRaw("Horizontal");
-            if (horizontalInput == 0){
+            if (horizontalInput == 0 && _uniqueJarBreak == false){
                 _animator.SetTrigger("Heal");
             }
-            if (horizontalInput != 0){
+            if (horizontalInput == 0 && _uniqueJarBreak == true){
+                    _animator.SetTrigger("HealBreak");
+                    _uniqueJarBreak = false;
+                }
+            if (horizontalInput != 0 && _uniqueJarBreak == false){
                 _animator.SetTrigger("HealWalk");
+            }
+             if (horizontalInput != 0 && _uniqueJarBreak == true){
+                _animator.SetTrigger("HealWalkBreak");
+                _uniqueJarBreak = false;
             }
             _lowHealth = false;
             health = health + 1;
-            Debug.Log("Heal");
             _inkUses = _inkUses -1;
             
             
