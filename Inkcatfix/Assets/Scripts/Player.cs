@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 	//heal 
 	private bool _stunned = false, _rightSided, _leftSided, _side;
 	private float _cdHeal = 0f;
-	private float _HealDelay = 0.5f;
+	private float _HealDelay = 0.6f;
 
 	//facing
 	float dirX, dirXx;
@@ -138,23 +138,19 @@ public class Player : MonoBehaviour
 				}
 				if (_isGrounded == false && (horizontalInput == 1 || horizontalInput == -1 || horizontalInput == 0)) 
 				{
-					if(_rigidbody.velocity.y>0 && _rigidbody.velocity.y<3.9){
+					if(_rigidbody.velocity.y>0.1 && _rigidbody.velocity.y<3.7){
 						_animator.SetTrigger("ShootJumpUp");
 					}
-					if(_rigidbody.velocity.y<=0){
+					if(_rigidbody.velocity.y<0){
 						_animator.SetTrigger("ShootJumpDown");
 					}
 				}
 			
 			}
-			if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && _stunned == false) 
+			if (_isGrounded == true && Input.GetButton("Fire1") == false && Input.GetButton("Fire2") == true && _stunned == false && Time.time > _cdHeal)  
 			{
-				
-				if (Time.time > _cdHeal)
-				{
-					_cdHeal = _HealDelay + Time.time;			
-					health.Heal();
-				}
+				_cdHeal = _HealDelay + Time.time;			
+				health.Heal();
 
 			}
 			if (Input.GetButtonDown("Fire3") == true || Input.GetButtonUp("Fire3") == true)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac6e719c7a09e2f40bbb9cf1c66ee3e2
+guid: 790b7a41b48127a47882300520a4b548
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: up-attack_2_0
+      name: up-attack_1 (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bde9034abac0884d8bbd7f97de9d8c8
-      internalID: 914705809
+      spriteID: 7b7f028d84bba004192a7011ca7414df
+      internalID: 1183027090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: up-attack_2_1
+      name: up-attack_1 (1)_1
       rect:
         serializedVersion: 2
         x: 64
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 891355a91c1b5b74cb54432dd0fa02f0
-      internalID: 614254792
+      spriteID: 59490e7158f8b5f4a9aceaab966cda0e
+      internalID: 430638063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: up-attack_2_2
+      name: up-attack_1 (1)_2
       rect:
         serializedVersion: 2
         x: 0
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fcd0818de4b97e41ba4778c60767fe4
-      internalID: 1085371307
+      spriteID: 3e66bddef16326d41b05a4660bd7e98c
+      internalID: 2029248709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: up-attack_2_3
+      name: up-attack_1 (1)_3
       rect:
         serializedVersion: 2
         x: 64
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0268840553c3c1046b5b4246a21160ca
-      internalID: -1367453487
+      spriteID: d60414aa3c907de4bba48df4e4c74a9e
+      internalID: 1534051691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: up-attack_2_4
+      name: up-attack_1 (1)_4
       rect:
         serializedVersion: 2
         x: 0
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99090b19a8a50674ab7477f1f8e3058b
-      internalID: 1947083626
+      spriteID: 2f9264e2885081b469cf58fd155b38d2
+      internalID: -1471571059
       vertices: []
       indices: 
       edges: []
@@ -232,11 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      up-attack_2_2: 1085371307
-      up-attack_2_3: -1367453487
-      up-attack_2_4: 1947083626
-      up-attack_2_1: 614254792
-      up-attack_2_0: 914705809
+      up-attack_1 (1)_0: 1183027090
+      up-attack_1 (1)_2: 2029248709
+      up-attack_1 (1)_4: -1471571059
+      up-attack_1 (1)_3: 1534051691
+      up-attack_1 (1)_1: 430638063
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

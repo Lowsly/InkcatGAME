@@ -157,14 +157,17 @@ public class Health : MonoBehaviour
                 _animator.SetTrigger("HealWalkBreak");
                 _uniqueJarBreak = false;
             }
-            _lowHealth = false;
-            health = health + 1;
-            _inkUses = _inkUses -1;
-            
-            
-            if (health > 3){
-                health = 3;
-            }
+           
+        }
+    }
+
+    public void Healed()
+    {
+        _lowHealth = false;
+        health = health + 1;
+        _inkUses = _inkUses -1;   
+        if (health > 3){
+            health = 3;
         }
     }
     public void InkUsed(){

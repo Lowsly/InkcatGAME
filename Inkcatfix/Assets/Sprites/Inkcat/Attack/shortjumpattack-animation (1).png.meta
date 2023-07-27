@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 06518dbb6fd923642a7910d41e1ef2ce
+guid: 93f2459d2d7b17f46bf56665606bcb09
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,49 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: up-attack_1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df426ceb9d211954d8274ac98c3459a7
-      internalID: -1266431519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: up-attack_1_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdc5e1da4c04ae147bb845a64e4ca897
-      internalID: 287066760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: up-attack_1_2
+      name: shortjumpattack-animation (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -173,17 +131,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16463a22d9dcd714ba6990faca2db136
-      internalID: -803010573
+      spriteID: dc488facb01901b4098b133bb016afd9
+      internalID: -2139792919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: up-attack_1_3
+      name: shortjumpattack-animation (1)_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 63
         y: 64
         width: 64
         height: 64
@@ -194,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b89d2d791bdbe842b89ec60a12dcb5a
-      internalID: -144974724
+      spriteID: e216da2b3bb6ae14cb4e2881c1ad8125
+      internalID: 1457801061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: up-attack_1_4
+      name: shortjumpattack-animation (1)_2
       rect:
         serializedVersion: 2
         x: 0
@@ -215,8 +173,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7053fb660de75b4ba760400b645470b
-      internalID: 399422201
+      spriteID: 7f5c7c01f96ba4844974d2ac1207195b
+      internalID: -1635492623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shortjumpattack-animation (1)_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49df08655963cd14b9aef8f476a15c0b
+      internalID: -1198956183
       vertices: []
       indices: 
       edges: []
@@ -232,11 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      up-attack_1_0: -1266431519
-      up-attack_1_2: -803010573
-      up-attack_1_4: 399422201
-      up-attack_1_3: -144974724
-      up-attack_1_1: 287066760
+      shortjumpattack-animation (1)_2: -1635492623
+      shortjumpattack-animation (1)_1: 1457801061
+      shortjumpattack-animation (1)_3: -1198956183
+      shortjumpattack-animation (1)_0: -2139792919
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
