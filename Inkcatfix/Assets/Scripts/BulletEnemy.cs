@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletEnemy : MonoBehaviour
 {
-public GameObject splashEndPrefab, smallBulletPrefab;
+public GameObject splashEndPrefab;
     private Rigidbody2D _rigidbody;
   	private bool _isTouching;
     public Transform groundCheck;
@@ -31,8 +31,6 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 		Health health = GetComponent<Health>();
 		_startingTime = Time.time;
 		Invoke ("DestroyBullet",livingTime);
-		
-		
     }
 
     void Update()
@@ -60,11 +58,5 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 	void DestroyBullet(){
 		Instantiate (splashEndPrefab, transform.position, Quaternion.identity);
 		Destroy(gameObject);
-	}
-	void SummonExtra(){
-		
-		Instantiate (smallBulletPrefab, new Vector3(0,0.01f,0) + transform.position, Quaternion.identity);
-		Instantiate (smallBulletPrefab, new Vector3(0,-0.01f,0) + transform.position, Quaternion.identity);
-		
 	}
 }

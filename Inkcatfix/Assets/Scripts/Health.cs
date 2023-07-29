@@ -65,7 +65,7 @@ public class Health : MonoBehaviour
             if(_inkUses < 1){
                 Ink[2].sprite = emptyInk;
                 Ink[1].sprite = emptyInk;
-                Ink[0].sprite = brokenInkJar;
+                
                 _noJar = true;
                 
             }
@@ -148,6 +148,7 @@ public class Health : MonoBehaviour
             }
             if (horizontalInput == 0 && _uniqueJarBreak == true){
                     _animator.SetTrigger("HealBreak");
+                    Ink[0].sprite = brokenInkJar;
                     _uniqueJarBreak = false;
                 }
             if (horizontalInput != 0 && _uniqueJarBreak == false){
@@ -155,6 +156,7 @@ public class Health : MonoBehaviour
             }
              if (horizontalInput != 0 && _uniqueJarBreak == true){
                 _animator.SetTrigger("HealWalkBreak");
+                Ink[0].sprite = brokenInkJar;
                 _uniqueJarBreak = false;
             }
            

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	//Bullets
-	public GameObject bulletPrefab, splashPrefab, shooter;
+	public GameObject bulletPrefab, splashPrefab, shooter, smallBulletPrefab;
 	private Transform _firePoint;
 
 	//Basic
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
 	private float horizontalInput, verticalInput;
 	//heal 
-	private bool _stunned = false, _rightSided, _leftSided, _side;
+	private bool _stunned = false, _rightSided, _leftSided, _side, _specialShoot;
 	private float _cdHeal = 0f;
 	private float _HealDelay = 0.6f;
 
@@ -249,11 +249,19 @@ public class Player : MonoBehaviour
 		{
 				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
 				var splash = Instantiate (splashPrefab, new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
+				if(_specialShoot == true){
+					var firedBulletSmall = Instantiate (smallBulletPrefab, new Vector3 (0f,0.15f,0f) + _firePoint.position, Quaternion.Euler(0,0, 20));
+					var firedBulletSmall2 = Instantiate (smallBulletPrefab, new Vector3 (0f,-0.15f,0f) + _firePoint.position, Quaternion.Euler(0,0, -20));
+				}
 		}
 		if(localScale.x < 0 )
 		{
 				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0,180));
 				var splash = Instantiate (splashPrefab,new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
+				if(_specialShoot == true){
+					var firedBulletSmall = Instantiate (smallBulletPrefab, new Vector3 (0f,0.15f,0f) + _firePoint.position, Quaternion.Euler(0,0, 200));
+					var firedBulletSmall2 = Instantiate (smallBulletPrefab, new Vector3 (0f,-0.15f,0f) + _firePoint.position, Quaternion.Euler(0,0, 160));
+				}
 		}
 		
 	}
@@ -287,6 +295,12 @@ public class Player : MonoBehaviour
 			var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,140));
 			var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 140));
 		}
+	}
+	public IEnumerator SpecialShoot(){
+		_specialShoot = true;
+		yield return new WaitForSecondsRealtime(5);
+		_specialShoot = false;
+
 	}
 	
 }

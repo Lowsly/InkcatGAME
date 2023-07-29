@@ -10,6 +10,7 @@ public class Power : MonoBehaviour
     public Sprite[] powerBarSprite;
 
     private int _maxPower=11, _currentPower;
+
     
     void Start()
     {
@@ -36,5 +37,13 @@ public class Power : MonoBehaviour
                     _currentPower = 0;
                 }
 			}
+        if (Input.GetKeyDown("1") && _currentPower>2){
+            Player player = GetComponent<Player>();
+            player.SpecialShoot();
+            _currentPower=-3; 
+        }
+    }
+    void SpecialShootTrimode(){
+
     }
 }
