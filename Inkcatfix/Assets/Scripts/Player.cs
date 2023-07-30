@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 	//heal 
 	private bool _stunned = false, _rightSided, _leftSided, _side, _specialShoot;
 	private float _cdHeal = 1f;
-	private float _HealDelay = 0.6f, _specialDelay = 15;
+	private float _HealDelay = 0.6f;
 
 	//facing
 	float dirX, dirXx;
@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
 				}
 				if (_isGrounded == false && (horizontalInput == 1 || horizontalInput == -1 || horizontalInput == 0)) 
 				{
-					if(_rigidbody.velocity.y>0.1 && _rigidbody.velocity.y<3.7){
+					if(_rigidbody.velocity.y>0.1 && _rigidbody.velocity.y<3.6){
 						_animator.SetTrigger("ShootJumpUp");
 					}
 					if(_rigidbody.velocity.y<0){
