@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class SmallBullet : MonoBehaviour
 {
 public GameObject splashEndPrefab, smallBulletPrefab;
     private Rigidbody2D _rigidbody;
   	private bool _isTouching;
-
     public LayerMask groundLayer;
 	public float groundCheckRadius;
 	public float speed = 2f;
 	public Vector2 direction;
 	public float livingTime = 3f;
-	public Color initialColor = Color.white;
-	public Color finalColor;
 
 	private SpriteRenderer _renderer;
 	private float _startingTime;
@@ -31,6 +28,7 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 		Health health = GetComponent<Health>();
 		_startingTime = Time.time;
 		Invoke ("DestroyBullet",livingTime);
+		 
 		
 		
     }
@@ -44,11 +42,6 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 		if (_isTouching == true){
 			DestroyBullet();
 		}
-		// Change bullet's color over time
-		/*float _timeSinceStarted = Time.time - _startingTime;
-		float _percentageCompleted = _timeSinceStarted / livingTime;
-
-		_renderer.color = Color.Lerp(initialColor, finalColor, _percentageCompleted);*/
 		
     }
 	void OnTriggerEnter2D(Collider2D collision)
@@ -58,8 +51,9 @@ public GameObject splashEndPrefab, smallBulletPrefab;
             DestroyBullet();
     }
 	void DestroyBullet(){
-		Instantiate (splashEndPrefab, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+		GameObject splash = Instantiate (splashEndPrefab, transform.position, Quaternion.identity);
+		splash.transform.localScale *= 0.4f;
+		Destroy(this.gameObject);
 	}
 	void SummonExtra(){
 		

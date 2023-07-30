@@ -32,15 +32,20 @@ public class Power : MonoBehaviour
 			}
         if (Input.GetButtonDown("Fire2"))
 			{
-				_currentPower--; 
-                if(_currentPower<0){
+                if(_currentPower>0){
+                    _currentPower--; 
+                }
+				
+                
+			}
+            if(_currentPower<0){
                     _currentPower = 0;
                 }
-			}
-        if (Input.GetKeyDown("1") && _currentPower>2){
+        if (Input.GetKeyDown(KeyCode.Alpha1) && _currentPower>2){
+            _currentPower= _currentPower-3; 
             Player player = GetComponent<Player>();
-            player.SpecialShoot();
-            _currentPower=-3; 
+            player.ActivateSpecialShoot();
+            
         }
     }
     void SpecialShootTrimode(){

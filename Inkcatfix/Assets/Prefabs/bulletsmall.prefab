@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3112409723863472842}
   - component: {fileID: 3112409723863472843}
-  - component: {fileID: 3112409723863472840}
   - component: {fileID: -2178697551215552911}
   - component: {fileID: 3919829734237896950}
   - component: {fileID: 6422238378666427421}
   - component: {fileID: -8620053660971287413}
+  - component: {fileID: -1637573754928369273}
   m_Layer: 8
   m_Name: bulletsmall
   m_TagString: Untagged
@@ -89,30 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3112409723863472840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3112409723863472841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd821d93c9948447b92aea7c732a2f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splashEndPrefab: {fileID: 2419857342239185094, guid: 0347c735a73cb66468dbee24648d795f, type: 3}
-  smallBulletPrefab: {fileID: 3112409723863472841}
-  groundCheck: {fileID: 3112409723863472842}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheckRadius: 0.06
-  speed: 4
-  direction: {x: 1, y: 0}
-  livingTime: 5
-  initialColor: {r: 0, g: 0, b: 0, a: 1}
-  finalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &-2178697551215552911
 Rigidbody2D:
   serializedVersion: 4
@@ -266,3 +242,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1637573754928369273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3112409723863472841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79e52a87860a1646a31d9d285c75ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splashEndPrefab: {fileID: 2419857342239185094, guid: 0347c735a73cb66468dbee24648d795f, type: 3}
+  smallBulletPrefab: {fileID: 3112409723863472841}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckRadius: 0.02
+  speed: 2
+  direction: {x: 1, y: 0}
+  livingTime: 3
