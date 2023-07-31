@@ -36,17 +36,15 @@ public class Player : MonoBehaviour
 	// Attack
 
 	private bool _isAttacking;
-	private float _cdShoot = 1f;
-	private float _shootDelay = 0.5f;
+	private float _cdShoot = 1f, _shootDelay = 0.5f,_cdHeal = 1f,_HealDelay = 0.6f;
 	private bool _attackRight = true;
 	private bool _attackUp;
 	private bool _attackHorizontal;
 
-	private float horizontalInput, verticalInput;
+	public int _bullets=1;
+	private float horizontalInput, verticalInput, _angles, _halfangle, angleStep, currentAngle;
 	//heal 
 	private bool _stunned = false, _rightSided, _leftSided, _side, _specialShoot;
-	private float _cdHeal = 1f;
-	private float _HealDelay = 0.6f;
 
 	//facing
 	float dirX, dirXx;
@@ -70,11 +68,23 @@ public class Player : MonoBehaviour
 		health = GetComponent<Health>();
        
 	   localScale = transform.localScale;
+	  
 	
     }
 
     public void Update()
     {	
+		 angleStep = 90f / (_bullets - 1); 
+		if(_bullets >1){
+			currentAngle = -45;
+		}
+		if(_bullets == 1){
+			currentAngle = 0;
+		}
+		if(_bullets == 2){
+			currentAngle = -45/16;
+			angleStep = 90f/16 / (_bullets - 1); 
+		}
 		horizontalInput = Input.GetAxisRaw("Horizontal");
 		verticalInput = Input.GetAxisRaw("Vertical");
 		if (_stunned == false)
@@ -246,17 +256,26 @@ public class Player : MonoBehaviour
 	}
 	public void ShootHor(){
 		if(localScale.x >0 )
-		{
-				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
-				var splash = Instantiate (splashPrefab, new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
+		{	
+			for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab, _firePoint.position, Quaternion.Euler(0, 0, currentAngle));
+				currentAngle += angleStep;
+			}
+			var splash = Instantiate (splashPrefab, new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
 				if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 20));
 					var firedBulletSmall2 = Instantiate (smallBulletPrefab, _firePoint.position, Quaternion.Euler(0,0, -20));
 				}
+			
 		}
 		if(localScale.x < 0 )
 		{
-				var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0,180));
+			for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab, _firePoint.position, Quaternion.Euler(0, 0, currentAngle+180));
+				currentAngle += angleStep;
+			}
 				var splash = Instantiate (splashPrefab,new Vector3 (0f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
 				if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 160));
@@ -267,7 +286,11 @@ public class Player : MonoBehaviour
 	}
 	public void ShootUp()
 	{
-		var firedBullet = Instantiate (bulletPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 90));
+		for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab,new Vector3 (localScale.x * -0.345f,0.412f,0f) +  _firePoint.position, Quaternion.Euler(0, 0, currentAngle+90));
+				currentAngle += angleStep;
+			}
 		var splash = Instantiate (splashPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 90));
 		if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, new Vector3 (localScale.x * -0.345f,0.412f,0f) + _firePoint.position, Quaternion.Euler(0,0, 110));
@@ -278,7 +301,11 @@ public class Player : MonoBehaviour
 	{
 		if(localScale.x >0)
 		{
-			var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 0));
+			for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab, _firePoint.position, Quaternion.Euler(0, 0, currentAngle));
+				currentAngle += angleStep;
+			}
 			var splash = Instantiate (splashPrefab,new Vector3 (0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 0));
 			if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 20));
@@ -288,7 +315,11 @@ public class Player : MonoBehaviour
 		}
 		if(localScale.x < 0)
 		{
-			var firedBullet = Instantiate (bulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 180));
+			for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab, _firePoint.position, Quaternion.Euler(0, 0, currentAngle+180));
+				currentAngle += angleStep;
+			}
 			var splash = Instantiate (splashPrefab,new Vector3 (-0.1f,0.015f,0f) + _firePoint.position, Quaternion.Euler(0,0, 180));
 			if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, _firePoint.position, Quaternion.Euler(0,0, 160));
@@ -300,7 +331,11 @@ public class Player : MonoBehaviour
 	{
 		if(localScale.x >0)
 		{
-			var firedBullet = Instantiate (bulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,40));
+			for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab,new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0, 0, currentAngle+40));
+				currentAngle += angleStep;
+			}
 			var splash = Instantiate (splashPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 40));
 			if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, new Vector3 (0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 60));
@@ -310,7 +345,11 @@ public class Player : MonoBehaviour
 		}
 		if(localScale.x <0)
 		{
-			var firedBullet = Instantiate (bulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0,140));
+			for (int i = 0; i < _bullets; i++)
+			{
+				var firedBullet = Instantiate(bulletPrefab,new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0, 0, currentAngle+140));
+				currentAngle += angleStep;
+			}
 			var splash = Instantiate (splashPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 140));
 			if(_specialShoot == true){
 					var firedBulletSmall = Instantiate (smallBulletPrefab, new Vector3 (-0.05f,0.264f,0f) + _firePoint.position, Quaternion.Euler(0,0, 160));

@@ -47,7 +47,10 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 	void OnTriggerEnter2D(Collider2D collision)
     {
             Health health = collision.GetComponent<Health>();
-            health.Hit();
+            if (health != null)
+    {
+        health.Hit();
+    }
             DestroyBullet();
     }
 	void DestroyBullet(){

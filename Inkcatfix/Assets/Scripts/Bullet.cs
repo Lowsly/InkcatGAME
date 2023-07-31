@@ -51,20 +51,22 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 		_renderer.color = Color.Lerp(initialColor, finalColor, _percentageCompleted);*/
 		
     }
-	void OnTriggerEnter2D(Collider2D collision)
+	public void OnTriggerEnter2D(Collider2D collision)
     {
+			
             Health health = collision.GetComponent<Health>();
-            health.Hit();
-            DestroyBullet();
+			 if (health == null)
+    		{
+       			 return;
+   			 }
+			else{
+				health.Hit();
+            	DestroyBullet();
+			}
     }
 	void DestroyBullet(){
 		Instantiate (splashEndPrefab, transform.position, Quaternion.identity);
 		Destroy(gameObject);
 	}
-	void SummonExtra(){
-		
-		Instantiate (smallBulletPrefab, new Vector3(0,0.01f,0) + transform.position, Quaternion.identity);
-		Instantiate (smallBulletPrefab, new Vector3(0,-0.01f,0) + transform.position, Quaternion.identity);
-		
-	}
+	
 }
