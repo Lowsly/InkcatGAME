@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_Sprite: {fileID: -1381066214, guid: ed7c4302e4acd144f8bdbd61edab7dc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splashEndPrefab: {fileID: 2419857342239185094, guid: 0347c735a73cb66468dbee24648d795f, type: 3}
-  groundCheck: {fileID: 3112409723863472842}
+  smallBulletPrefab: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -112,6 +112,7 @@ MonoBehaviour:
   livingTime: 7
   initialColor: {r: 0, g: 0, b: 0, a: 1}
   finalColor: {r: 0, g: 0, b: 0, a: 0}
+  damage: 0
 --- !u!50 &-2178697551215552911
 Rigidbody2D:
   serializedVersion: 4
