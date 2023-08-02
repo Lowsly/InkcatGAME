@@ -15,6 +15,7 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 	public float livingTime = 3f;
 	public Color initialColor = Color.white;
 	public Color finalColor;
+	public float damage;
 
 	private SpriteRenderer _renderer;
 	private float _startingTime;
@@ -54,13 +55,13 @@ public GameObject splashEndPrefab, smallBulletPrefab;
 	public void OnTriggerEnter2D(Collider2D collision)
     {
 			
-            Health health = collision.GetComponent<Health>();
+            HealthEnemy health = collision.GetComponent<HealthEnemy>();
 			 if (health == null)
     		{
        			 return;
    			 }
 			else{
-				health.Hit();
+				health.TakeDamage(damage);
             	DestroyBullet();
 			}
     }

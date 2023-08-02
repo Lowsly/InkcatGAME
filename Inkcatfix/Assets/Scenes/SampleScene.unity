@@ -1348,7 +1348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: _bullets
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: smallBulletPrefab
@@ -3723,6 +3723,7 @@ GameObject:
   - component: {fileID: 1938803841}
   - component: {fileID: 1938803840}
   - component: {fileID: 1938803839}
+  - component: {fileID: 1938803842}
   m_Layer: 0
   m_Name: bear-enemy_0
   m_TagString: Untagged
@@ -3833,7 +3834,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d9ec9e71015894d4584e401dbec9dc1f, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -3867,7 +3868,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 346480526}
-  Health: 34
+  Health: 3
+--- !u!114 &1938803842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938803835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7fcd6c4fdd8364c982e95cfb5f404f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 3
 --- !u!4 &1970739391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8801876571137600725, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}

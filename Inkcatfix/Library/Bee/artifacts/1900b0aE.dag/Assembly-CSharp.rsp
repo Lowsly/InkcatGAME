@@ -378,6 +378,7 @@
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/BulletEnemy.cs"
 "Assets/Scripts/Health.cs"
+"Assets/Scripts/HealthEnemy.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Power.cs"
 "Assets/Scripts/Shoot.cs"
