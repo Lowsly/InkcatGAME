@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3919829734237896950}
   - component: {fileID: 6422238378666427421}
   - component: {fileID: -8620053660971287413}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   livingTime: 5
   initialColor: {r: 0, g: 0, b: 0, a: 1}
   finalColor: {r: 0, g: 0, b: 0, a: 0}
+  damage: 1
 --- !u!50 &-2178697551215552911
 Rigidbody2D:
   serializedVersion: 4
