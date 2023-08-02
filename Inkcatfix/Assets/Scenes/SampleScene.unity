@@ -1348,7 +1348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: _bullets
+<<<<<<< HEAD
+      value: 1
+=======
       value: 3
+>>>>>>> 16e7aa4c3ccc34a9b91d8871e78b1fa731e6844f
       objectReference: {fileID: 0}
     - target: {fileID: 8801876571137600726, guid: 788df0ae17f630f4589737e92e0e8ce3, type: 3}
       propertyPath: smallBulletPrefab
